@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %} 逆合成分析系统 {% endblock %}</h1>
+                <form method="POST" action="{{ url_for('auth.register') }}">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" class="form-control" name="username">
+                        <small id="userHelp" class="form-text text-muted">用户名应小于10字符</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">密码</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">确认密码</label>
+                        <input type="password" class="form-control" name="password2">
+                    </div>
+                    <button type="submit" value="register" name="register" class="btn btn-primary btn-block">立即注册</button>
+                </form>
+            <div class="right">
+                <!-- target="_blank"  在新窗口打开链接 -->
+                <p style="text-align: right;">已有账号?<a href="{{url_for('auth.login')}}" style="color: blue" onclick="topggleForm();" >立即登录</a></p>
+            </div>
+{% endblock %}

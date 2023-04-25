@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./static/bootstrap/bootstrap.4.6.min.css">
+    <link rel="stylesheet" href="./static/css/init.css">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+  <body>
+
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" >逆合成分析系统</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row mt-4">
+            <div class="col"></div>
+            <div class="col">
+                {% block content %} {% endblock %}
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+    <script src="{{url_for('static', filename='js/jquery.slim.min.js')}}" ></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}" ></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}" ></script>
+
+  </body>
+
+</html>

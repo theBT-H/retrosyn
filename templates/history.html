@@ -1,0 +1,48 @@
+{% extends 'base1.html' %}
+{% block content %}
+<h1>{% block title %} 历史记录 {% endblock %}</h1>
+<script type="text/javascript">
+  function confirmDelete(route_id) {
+    if (confirm("确认删除该记录吗？")) {
+      fetch(`/history/delete/${route_id}`, {
+        method: "DELETE"
+      }).then(response => {
+        if (response.ok) {
+          // 刷新页面
+          window.location.reload();
+        } else {
+          throw new Error("删除记录失败！");
+        }
+      }).catch(error => {
+        alert(error.message);
+      });
+    }
+  }
+</script>
+<div class="form-group">
+    <button type="submit" value="login" name="historyupdate" class="btn btn-primary btn-block" href="{{url_for('history.update')}}">更新记录</button>
+</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th>产物</th>
+            <th>产物SMLIES码</th>
+            <th>详情</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for record in results %}
+        <tr>
+            <td><img src="{{ url_for('history.thumbnail', filename=record[4].replace('D:/retrosynData/data/thumbnail/', '')) }}" /></td>
+            <td>{{ record[2] }}</td>
+            <td><a href="{{ url_for('history.detail', rid=record[0]) }}">点击查看</a></td>
+            <td><button onclick="confirmDelete({{ record[0] }})">删除</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

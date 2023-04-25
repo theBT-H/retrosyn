@@ -1,0 +1,22 @@
+{% extends 'base1.html' %}
+{% block content %}
+<h1>{% block title %} Retrosynthesis {% endblock %}</h1>
+
+<form method="post">
+    <div class="form-group">
+        <input type="text" name="title" placeholder="Smiles" class="form-control" style="background: white"
+            value="{{ request.form['title'] }}">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="background: #16181b">Submit</button>
+    </div>
+    <form action="/process-form" method="post">
+      <input type="radio" id="option1" name="option" value="option1" checked>
+      <label for="option1">单步逆合成不调用数据库</label>
+      <br>
+      <input type="radio" id="option2" name="option" value="option2">
+      <label for="option2">单步逆合成调用数据库</label>
+      <br>
+    </form>
+</form>
+{% endblock %}
